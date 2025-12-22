@@ -131,7 +131,11 @@ class ResNetTransformerEncoderDecoder(nn.Module):
         super().__init__()
         self.encoder = Encoder(embed_size, train_CNN=train_CNN, num_encoder_layers=num_encoder_layers, num_heads=num_heads, dropout=dropout)
         self.decoder = Decoder(embed_size, num_heads, num_layers, vocab_size, dropout)
-
+        self.num_heads = num_heads
+        self.num_layers = num_layers
+        self.dropout = dropout
+        self.num_encoder_layers = num_encoder_layers
+        self.train_CNN = train_CNN
         self.embed_size = embed_size
         self.vocab_size = vocab_size
 

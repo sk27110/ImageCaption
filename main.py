@@ -1,4 +1,6 @@
+import comet_ml
 from src.resnet_transformer_model import ResNetTransformerEncoderDecoder
+from src.clip_transformer_model import CLIPTransformerEncoderDecoder
 from src.dataset import get_datasets
 from src.trainer import Trainer
 from src.utils import CollateFn
@@ -6,15 +8,11 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from transformers import get_cosine_schedule_with_warmup
-from src.model_lstm import LSTMEncoderDecoder
 
-import wandb
 
 def main():
     train, val, _ = get_datasets()
-    wandb.login(key='ключ от wandb')
     pad_idx = train.vocab.stoi["<PAD>"]
-    batch_size = 64
     batch_size = 64
     train_loader = DataLoader(
         train,
@@ -43,7 +41,7 @@ def main():
     train_CNN = True
     beam_width = 3
 
-    model = ResNetTransformerEncoderDecoder(
+    model = CLIPTransformerEncoderDecoder(
         embed_size=embed_size,
         num_heads=num_heads,
         vocab_size=vocab_size,
@@ -56,13 +54,8 @@ def main():
     criterion = nn.CrossEntropyLoss(ignore_index=train.vocab.stoi["<PAD>"], label_smoothing=0.03)
     optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=0.03)
 
-    train_dataset_len = len(train_loader.dataset)
-
-    total_steps = (train_dataset_len // batch_size) * num_epochs
     total_steps = len(train_loader) * num_epochs
-
     warmup_steps = 500
-
 
     scheduler = get_cosine_schedule_with_warmup(
         optimizer,
@@ -71,7 +64,6 @@ def main():
         num_cycles=0.5,
         last_epoch=-1
     )
-
 
     trainer = Trainer(
         model=model,
@@ -87,7 +79,7 @@ def main():
         tokenizer=train.vocab,
         num_epochs=num_epochs,
         beam_width=beam_width
-            )
+    )
     
     trainer.train()
 
