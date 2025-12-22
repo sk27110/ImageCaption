@@ -1,0 +1,451 @@
+2025-12-13 18:17:33 Training: 100%|███████████████████████████████| 506/506 [01:41<00:00,  4.99it/s]
+2025-12-13 18:19:14 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.15it/s]
+2025-12-13 18:19:23 Epoch 1: train_loss=6.5556, val_loss=5.0554
+2025-12-13 18:19:23 Pred: <START> a a a a a a a a . <END>
+2025-12-13 18:19:23 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:19:23 ----------------------------------------
+2025-12-13 18:19:23 Pred: <START> a a a a a a a a . <END>
+2025-12-13 18:19:23 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:19:23 ----------------------------------------
+2025-12-13 18:19:23 Pred: <START> a a a a a a a . <END>
+2025-12-13 18:19:23 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:19:23 ----------------------------------------
+2025-12-13 18:19:23 Pred: <START> a a a a a a a a . <END>
+2025-12-13 18:19:23 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:19:23 ----------------------------------------
+2025-12-13 18:19:23 Training: 100%|███████████████████████████████| 506/506 [01:40<00:00,  5.03it/s]
+2025-12-13 18:21:03 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.17it/s]
+2025-12-13 18:21:12 Epoch 2: train_loss=4.6415, val_loss=4.1669
+2025-12-13 18:21:12 Pred: <START> a man in a <UNK> on a <UNK> . <END>
+2025-12-13 18:21:12 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:21:12 ----------------------------------------
+2025-12-13 18:21:12 Pred: <START> a man in a <UNK> on a <UNK> . <END>
+2025-12-13 18:21:12 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:21:12 ----------------------------------------
+2025-12-13 18:21:12 Pred: <START> a dog in a dog in a dog in a dog . <END>
+2025-12-13 18:21:12 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:21:12 ----------------------------------------
+2025-12-13 18:21:12 Pred: <START> a man in a man in a <UNK> on a <UNK> . <END>
+2025-12-13 18:21:12 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:21:12 ----------------------------------------
+2025-12-13 18:21:12 Training: 100%|███████████████████████████████| 506/506 [01:44<00:00,  4.84it/s]
+2025-12-13 18:22:56 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.16it/s]
+2025-12-13 18:23:05 Epoch 3: train_loss=4.0852, val_loss=3.8615
+2025-12-13 18:23:05 Pred: <START> a man in a <UNK> <UNK> on a <UNK> . <END>
+2025-12-13 18:23:05 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:23:05 ----------------------------------------
+2025-12-13 18:23:05 Pred: <START> a boy is is is is is is is is is is in a red shirt in the water . <END>
+2025-12-13 18:23:05 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:23:05 ----------------------------------------
+2025-12-13 18:23:05 Pred: <START> a dog is running in the grass . <END>
+2025-12-13 18:23:05 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:23:05 ----------------------------------------
+2025-12-13 18:23:05 Pred: <START> a man in a <UNK> <UNK> on a <UNK> . <END>
+2025-12-13 18:23:05 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:23:05 ----------------------------------------
+2025-12-13 18:23:05 Training: 100%|███████████████████████████████| 506/506 [01:42<00:00,  4.94it/s]
+2025-12-13 18:24:47 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.31it/s]
+2025-12-13 18:24:56 Epoch 4: train_loss=3.8246, val_loss=3.6883
+2025-12-13 18:24:56 Pred: <START> a man in a mountain . <END>
+2025-12-13 18:24:56 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:24:56 ----------------------------------------
+2025-12-13 18:24:56 Pred: <START> a boy is wearing a red shirt is is standing in the water . <END>
+2025-12-13 18:24:56 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:24:56 ----------------------------------------
+2025-12-13 18:24:56 Pred: <START> a dog is running in a ball . <END>
+2025-12-13 18:24:56 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:24:56 ----------------------------------------
+2025-12-13 18:24:56 Pred: <START> a group of people are are are are are are are are are are are are are are are are are are are are are
+2025-12-13 18:24:56 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:24:56 ----------------------------------------
+2025-12-13 18:24:56 Training: 100%|███████████████████████████████| 506/506 [01:42<00:00,  4.94it/s]
+2025-12-13 18:26:38 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.19it/s]
+2025-12-13 18:26:47 Epoch 5: train_loss=3.6549, val_loss=3.5761
+2025-12-13 18:26:47 Pred: <START> two people are are are standing on a mountain . <END>
+2025-12-13 18:26:47 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:26:47 ----------------------------------------
+2025-12-13 18:26:47 Pred: <START> a boy is jumping on the water . <END>
+2025-12-13 18:26:47 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:26:47 ----------------------------------------
+2025-12-13 18:26:47 Pred: <START> a black dog is running on a ball . <END>
+2025-12-13 18:26:47 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:26:47 ----------------------------------------
+2025-12-13 18:26:47 Pred: <START> a group of people are standing on a street . <END>
+2025-12-13 18:26:47 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:26:47 ----------------------------------------
+2025-12-13 18:26:47 Training: 100%|███████████████████████████████| 506/506 [01:40<00:00,  5.03it/s]
+2025-12-13 18:28:28 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.08it/s]
+2025-12-13 18:28:36 Epoch 6: train_loss=3.5270, val_loss=3.4994
+2025-12-13 18:28:36 Pred: <START> two people are standing on a mountain . <END>
+2025-12-13 18:28:36 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:28:36 ----------------------------------------
+2025-12-13 18:28:36 Pred: <START> a boy in a blue shirt is jumping on the water . <END>
+2025-12-13 18:28:36 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:28:36 ----------------------------------------
+2025-12-13 18:28:36 Pred: <START> a black dog is running through the grass . <END>
+2025-12-13 18:28:36 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:28:36 ----------------------------------------
+2025-12-13 18:28:36 Pred: <START> a group of people are standing on a street . <END>
+2025-12-13 18:28:36 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:28:36 ----------------------------------------
+2025-12-13 18:28:36 Training: 100%|███████████████████████████████| 506/506 [01:42<00:00,  4.96it/s]
+2025-12-13 18:30:18 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.16it/s]
+2025-12-13 18:30:27 Epoch 7: train_loss=3.4265, val_loss=3.4320
+2025-12-13 18:30:27 Pred: <START> two people are standing on a mountain . <END>
+2025-12-13 18:30:27 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:30:27 ----------------------------------------
+2025-12-13 18:30:27 Pred: <START> a boy in a blue shirt is jumping on the beach . <END>
+2025-12-13 18:30:27 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:30:27 ----------------------------------------
+2025-12-13 18:30:27 Pred: <START> a black and white dog is running through the grass . <END>
+2025-12-13 18:30:27 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:30:27 ----------------------------------------
+2025-12-13 18:30:27 Pred: <START> a group of people are sitting on a building . <END>
+2025-12-13 18:30:27 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:30:27 ----------------------------------------
+2025-12-13 18:30:27 Training: 100%|███████████████████████████████| 506/506 [01:42<00:00,  4.95it/s]
+2025-12-13 18:32:09 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.19it/s]
+2025-12-13 18:32:17 Epoch 8: train_loss=3.3435, val_loss=3.3782
+2025-12-13 18:32:17 Pred: <START> two people are standing on a mountain . <END>
+2025-12-13 18:32:17 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:32:17 ----------------------------------------
+2025-12-13 18:32:17 Pred: <START> a boy in a blue shirt is jumping on the beach . <END>
+2025-12-13 18:32:17 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:32:18 ----------------------------------------
+2025-12-13 18:32:18 Pred: <START> a black and white dog is running in the grass . <END>
+2025-12-13 18:32:18 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:32:18 ----------------------------------------
+2025-12-13 18:32:18 Pred: <START> a group of people are sitting on a building . <END>
+2025-12-13 18:32:18 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:32:18 ----------------------------------------
+2025-12-13 18:32:18 Training: 100%|███████████████████████████████| 506/506 [01:44<00:00,  4.85it/s]
+2025-12-13 18:34:02 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.09it/s]
+2025-12-13 18:34:10 Epoch 9: train_loss=3.2729, val_loss=3.3424
+2025-12-13 18:34:10 Pred: <START> two people are standing on a mountain . <END>
+2025-12-13 18:34:10 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:34:10 ----------------------------------------
+2025-12-13 18:34:10 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 18:34:10 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:34:10 ----------------------------------------
+2025-12-13 18:34:10 Pred: <START> a black and white dog is running through the grass . <END>
+2025-12-13 18:34:10 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:34:10 ----------------------------------------
+2025-12-13 18:34:10 Pred: <START> a group of people are sitting on a building . <END>
+2025-12-13 18:34:10 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:34:10 ----------------------------------------
+2025-12-13 18:34:10 Training: 100%|███████████████████████████████| 506/506 [01:40<00:00,  5.04it/s]
+2025-12-13 18:35:51 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.23it/s]
+2025-12-13 18:35:59 Epoch 10: train_loss=3.2113, val_loss=3.3099
+2025-12-13 18:35:59 Pred: <START> two people are standing on a mountain . <END>
+2025-12-13 18:35:59 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:35:59 ----------------------------------------
+2025-12-13 18:35:59 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 18:35:59 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:35:59 ----------------------------------------
+2025-12-13 18:35:59 Pred: <START> a black and white dog is running through the grass . <END>
+2025-12-13 18:35:59 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:35:59 ----------------------------------------
+2025-12-13 18:35:59 Pred: <START> a group of people are sitting on a table . <END>
+2025-12-13 18:35:59 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:35:59 ----------------------------------------
+2025-12-13 18:35:59 Training: 100%|███████████████████████████████| 506/506 [01:41<00:00,  4.97it/s]
+2025-12-13 18:37:41 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.12it/s]
+2025-12-13 18:37:50 Epoch 11: train_loss=3.1578, val_loss=3.2863
+2025-12-13 18:37:50 Pred: <START> two people are standing on a mountain . <END>
+2025-12-13 18:37:50 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:37:50 ----------------------------------------
+2025-12-13 18:37:50 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 18:37:50 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:37:50 ----------------------------------------
+2025-12-13 18:37:50 Pred: <START> a black and white dog is running on a ball . <END>
+2025-12-13 18:37:50 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:37:50 ----------------------------------------
+2025-12-13 18:37:50 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 18:37:50 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:37:50 ----------------------------------------
+2025-12-13 18:37:50 Training: 100%|███████████████████████████████| 506/506 [01:44<00:00,  4.83it/s]
+2025-12-13 18:39:34 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.23it/s]
+2025-12-13 18:39:43 Epoch 12: train_loss=3.1108, val_loss=3.2563
+2025-12-13 18:39:43 Pred: <START> two people are sitting on a mountain . <END>
+2025-12-13 18:39:43 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:39:43 ----------------------------------------
+2025-12-13 18:39:43 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 18:39:43 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:39:43 ----------------------------------------
+2025-12-13 18:39:43 Pred: <START> a black and white dog is running on a ball . <END>
+2025-12-13 18:39:43 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:39:43 ----------------------------------------
+2025-12-13 18:39:43 Pred: <START> a group of people are sitting on a table . <END>
+2025-12-13 18:39:43 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:39:43 ----------------------------------------
+2025-12-13 18:39:43 Training: 100%|███████████████████████████████| 506/506 [01:40<00:00,  5.05it/s]
+2025-12-13 18:41:23 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.31it/s]
+2025-12-13 18:41:31 Epoch 13: train_loss=3.0698, val_loss=3.2377
+2025-12-13 18:41:31 Pred: <START> two people are sitting on a mountain . <END>
+2025-12-13 18:41:31 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:41:31 ----------------------------------------
+2025-12-13 18:41:31 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 18:41:31 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:41:31 ----------------------------------------
+2025-12-13 18:41:31 Pred: <START> a black and white dog is playing in the grass . <END>
+2025-12-13 18:41:31 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:41:31 ----------------------------------------
+2025-12-13 18:41:31 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 18:41:31 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:41:31 ----------------------------------------
+2025-12-13 18:41:31 Training: 100%|███████████████████████████████| 506/506 [01:44<00:00,  4.84it/s]
+2025-12-13 18:43:16 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.15it/s]
+2025-12-13 18:43:24 Epoch 14: train_loss=3.0329, val_loss=3.2232
+2025-12-13 18:43:24 Pred: <START> three people are sitting on a mountain . <END>
+2025-12-13 18:43:24 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:43:24 ----------------------------------------
+2025-12-13 18:43:24 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 18:43:24 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:43:24 ----------------------------------------
+2025-12-13 18:43:24 Pred: <START> a black and white dog is playing with a ball in the grass . <END>
+2025-12-13 18:43:24 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:43:24 ----------------------------------------
+2025-12-13 18:43:24 Pred: <START> a group of people are sitting on a table . <END>
+2025-12-13 18:43:24 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:43:24 ----------------------------------------
+2025-12-13 18:43:24 Training: 100%|███████████████████████████████| 506/506 [01:44<00:00,  4.83it/s]
+2025-12-13 18:45:09 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.10it/s]
+2025-12-13 18:45:18 Epoch 15: train_loss=3.0004, val_loss=3.2088
+2025-12-13 18:45:18 Pred: <START> a group of people are sitting on a mountain . <END>
+2025-12-13 18:45:18 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:45:18 ----------------------------------------
+2025-12-13 18:45:18 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 18:45:18 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:45:18 ----------------------------------------
+2025-12-13 18:45:18 Pred: <START> a black and white dog is playing in the grass . <END>
+2025-12-13 18:45:18 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:45:18 ----------------------------------------
+2025-12-13 18:45:18 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 18:45:18 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:45:18 ----------------------------------------
+2025-12-13 18:45:18 Training: 100%|███████████████████████████████| 506/506 [01:45<00:00,  4.80it/s]
+2025-12-13 18:47:03 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.15it/s]
+2025-12-13 18:47:12 Epoch 16: train_loss=2.9715, val_loss=3.1948
+2025-12-13 18:47:12 Pred: <START> a group of people are sitting on a mountain . <END>
+2025-12-13 18:47:12 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:47:12 ----------------------------------------
+2025-12-13 18:47:12 Pred: <START> a boy in a blue shirt and white shirt is standing on the beach . <END>
+2025-12-13 18:47:12 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:47:12 ----------------------------------------
+2025-12-13 18:47:12 Pred: <START> a black and white dog is playing with a ball in the grass . <END>
+2025-12-13 18:47:12 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:47:12 ----------------------------------------
+2025-12-13 18:47:12 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 18:47:12 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:47:12 ----------------------------------------
+2025-12-13 18:47:12 Training: 100%|███████████████████████████████| 506/506 [01:44<00:00,  4.86it/s]
+2025-12-13 18:48:56 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.29it/s]
+2025-12-13 18:49:04 Epoch 17: train_loss=2.9470, val_loss=3.1864
+2025-12-13 18:49:04 Pred: <START> a group of people are sitting on a mountain . <END>
+2025-12-13 18:49:04 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:49:04 ----------------------------------------
+2025-12-13 18:49:04 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 18:49:04 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:49:04 ----------------------------------------
+2025-12-13 18:49:04 Pred: <START> a black and white dog is playing with a ball in the grass . <END>
+2025-12-13 18:49:04 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:49:04 ----------------------------------------
+2025-12-13 18:49:04 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 18:49:04 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:49:04 ----------------------------------------
+2025-12-13 18:49:04 Training: 100%|███████████████████████████████| 506/506 [01:44<00:00,  4.86it/s]
+2025-12-13 18:50:48 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.17it/s]
+2025-12-13 18:50:57 Epoch 18: train_loss=2.9252, val_loss=3.1802
+2025-12-13 18:50:57 Pred: <START> three people are sitting on a mountain . <END>
+2025-12-13 18:50:57 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:50:57 ----------------------------------------
+2025-12-13 18:50:57 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 18:50:57 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:50:57 ----------------------------------------
+2025-12-13 18:50:57 Pred: <START> a black and white dog is playing with a ball in the grass . <END>
+2025-12-13 18:50:57 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:50:57 ----------------------------------------
+2025-12-13 18:50:57 Pred: <START> a group of people are sitting in front of a table . <END>
+2025-12-13 18:50:57 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:50:57 ----------------------------------------
+2025-12-13 18:50:57 Training: 100%|███████████████████████████████| 506/506 [01:45<00:00,  4.81it/s]
+2025-12-13 18:52:42 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.15it/s]
+2025-12-13 18:52:50 Epoch 19: train_loss=2.9070, val_loss=3.1727
+2025-12-13 18:52:50 Pred: <START> three people are sitting on a mountain . <END>
+2025-12-13 18:52:51 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:52:51 ----------------------------------------
+2025-12-13 18:52:51 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 18:52:51 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:52:51 ----------------------------------------
+2025-12-13 18:52:51 Pred: <START> a black and white dog is playing with a ball in the grass . <END>
+2025-12-13 18:52:51 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:52:51 ----------------------------------------
+2025-12-13 18:52:51 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 18:52:51 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:52:51 ----------------------------------------
+2025-12-13 18:52:51 Training: 100%|███████████████████████████████| 506/506 [01:42<00:00,  4.93it/s]
+2025-12-13 18:54:33 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.25it/s]
+2025-12-13 18:54:42 Epoch 20: train_loss=2.8888, val_loss=3.1680
+2025-12-13 18:54:42 Pred: <START> a group of people are sitting on a mountain . <END>
+2025-12-13 18:54:42 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:54:42 ----------------------------------------
+2025-12-13 18:54:42 Pred: <START> a boy in a blue shirt and white shirt is standing on the beach . <END>
+2025-12-13 18:54:42 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:54:42 ----------------------------------------
+2025-12-13 18:54:42 Pred: <START> a black and white dog is playing with a ball in the grass . <END>
+2025-12-13 18:54:42 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:54:42 ----------------------------------------
+2025-12-13 18:54:42 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 18:54:42 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:54:42 ----------------------------------------
+2025-12-13 18:54:42 Training: 100%|███████████████████████████████| 506/506 [01:43<00:00,  4.91it/s]
+2025-12-13 18:56:25 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.28it/s]
+2025-12-13 18:56:33 Epoch 21: train_loss=2.8753, val_loss=3.1634
+2025-12-13 18:56:33 Pred: <START> three people are sitting on a mountain . <END>
+2025-12-13 18:56:33 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:56:33 ----------------------------------------
+2025-12-13 18:56:33 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 18:56:33 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:56:33 ----------------------------------------
+2025-12-13 18:56:33 Pred: <START> a black and white dog is playing with a ball in its mouth . <END>
+2025-12-13 18:56:33 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:56:33 ----------------------------------------
+2025-12-13 18:56:33 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 18:56:33 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:56:33 ----------------------------------------
+2025-12-13 18:56:33 Training: 100%|███████████████████████████████| 506/506 [01:40<00:00,  5.06it/s]
+2025-12-13 18:58:13 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.21it/s]
+2025-12-13 18:58:22 Epoch 22: train_loss=2.8640, val_loss=3.1589
+2025-12-13 18:58:22 Pred: <START> three people are sitting on a mountain . <END>
+2025-12-13 18:58:22 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 18:58:22 ----------------------------------------
+2025-12-13 18:58:22 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 18:58:22 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 18:58:22 ----------------------------------------
+2025-12-13 18:58:22 Pred: <START> a black and white dog is playing with a ball in its mouth . <END>
+2025-12-13 18:58:22 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 18:58:22 ----------------------------------------
+2025-12-13 18:58:22 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 18:58:22 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 18:58:22 ----------------------------------------
+2025-12-13 18:58:22 Training: 100%|███████████████████████████████| 506/506 [01:43<00:00,  4.90it/s]
+2025-12-13 19:00:05 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.07it/s]
+2025-12-13 19:00:13 Epoch 23: train_loss=2.8546, val_loss=3.1576
+2025-12-13 19:00:13 Pred: <START> three people are sitting on a mountain . <END>
+2025-12-13 19:00:13 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 19:00:13 ----------------------------------------
+2025-12-13 19:00:13 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 19:00:13 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 19:00:13 ----------------------------------------
+2025-12-13 19:00:13 Pred: <START> a black and white dog is playing with a ball in its mouth . <END>
+2025-12-13 19:00:13 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 19:00:13 ----------------------------------------
+2025-12-13 19:00:13 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 19:00:13 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 19:00:13 ----------------------------------------
+2025-12-13 19:00:13 Training: 100%|███████████████████████████████| 506/506 [01:43<00:00,  4.90it/s]
+2025-12-13 19:01:57 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.11it/s]
+2025-12-13 19:02:05 Epoch 24: train_loss=2.8474, val_loss=3.1574
+2025-12-13 19:02:05 Pred: <START> three people are sitting on a mountain . <END>
+2025-12-13 19:02:05 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 19:02:05 ----------------------------------------
+2025-12-13 19:02:05 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 19:02:05 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 19:02:05 ----------------------------------------
+2025-12-13 19:02:05 Pred: <START> a black and white dog is playing with a ball in its mouth . <END>
+2025-12-13 19:02:05 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 19:02:05 ----------------------------------------
+2025-12-13 19:02:05 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 19:02:05 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 19:02:05 ----------------------------------------
+2025-12-13 19:02:05 Training: 100%|███████████████████████████████| 506/506 [01:42<00:00,  4.95it/s]
+2025-12-13 19:03:47 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.31it/s]
+2025-12-13 19:03:55 Epoch 25: train_loss=2.8403, val_loss=3.1591
+2025-12-13 19:03:55 Pred: <START> a group of people are sitting on a mountain . <END>
+2025-12-13 19:03:55 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 19:03:55 ----------------------------------------
+2025-12-13 19:03:55 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 19:03:55 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 19:03:55 ----------------------------------------
+2025-12-13 19:03:55 Pred: <START> a black and white dog is playing with a ball in its mouth . <END>
+2025-12-13 19:03:55 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 19:03:55 ----------------------------------------
+2025-12-13 19:03:55 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 19:03:55 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 19:03:55 ----------------------------------------
+2025-12-13 19:03:55 Training: 100%|███████████████████████████████| 506/506 [01:39<00:00,  5.07it/s]
+2025-12-13 19:05:35 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.08it/s]
+2025-12-13 19:05:43 Epoch 26: train_loss=2.8379, val_loss=3.1539
+2025-12-13 19:05:43 Pred: <START> a group of people are sitting on a mountain . <END>
+2025-12-13 19:05:43 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 19:05:43 ----------------------------------------
+2025-12-13 19:05:43 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 19:05:43 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 19:05:43 ----------------------------------------
+2025-12-13 19:05:43 Pred: <START> a black and white dog is playing with a ball in its mouth . <END>
+2025-12-13 19:05:43 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 19:05:43 ----------------------------------------
+2025-12-13 19:05:43 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 19:05:43 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 19:05:43 ----------------------------------------
+2025-12-13 19:05:43 Training: 100%|███████████████████████████████| 506/506 [01:40<00:00,  5.03it/s]
+2025-12-13 19:07:24 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.25it/s]
+2025-12-13 19:07:32 Epoch 27: train_loss=2.8339, val_loss=3.1559
+2025-12-13 19:07:32 Pred: <START> three people are sitting on a mountain . <END>
+2025-12-13 19:07:32 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 19:07:32 ----------------------------------------
+2025-12-13 19:07:32 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 19:07:32 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 19:07:32 ----------------------------------------
+2025-12-13 19:07:32 Pred: <START> a black and white dog is playing with a ball in its mouth . <END>
+2025-12-13 19:07:32 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 19:07:32 ----------------------------------------
+2025-12-13 19:07:32 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 19:07:32 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 19:07:32 ----------------------------------------
+2025-12-13 19:07:32 Training: 100%|███████████████████████████████| 506/506 [01:41<00:00,  5.01it/s]
+2025-12-13 19:09:13 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.21it/s]
+2025-12-13 19:09:21 Epoch 28: train_loss=2.8329, val_loss=3.1566
+2025-12-13 19:09:21 Pred: <START> three people are sitting on a mountain . <END>
+2025-12-13 19:09:21 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 19:09:21 ----------------------------------------
+2025-12-13 19:09:21 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 19:09:21 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 19:09:21 ----------------------------------------
+2025-12-13 19:09:21 Pred: <START> a black and white dog is playing with a ball in its mouth . <END>
+2025-12-13 19:09:21 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 19:09:21 ----------------------------------------
+2025-12-13 19:09:21 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 19:09:21 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 19:09:21 ----------------------------------------
+2025-12-13 19:09:21 Training: 100%|███████████████████████████████| 506/506 [01:42<00:00,  4.93it/s]
+2025-12-13 19:11:03 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.46it/s]
+2025-12-13 19:11:11 Epoch 29: train_loss=2.8324, val_loss=3.1570
+2025-12-13 19:11:11 Pred: <START> a group of people are sitting on a mountain . <END>
+2025-12-13 19:11:11 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 19:11:11 ----------------------------------------
+2025-12-13 19:11:11 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 19:11:11 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 19:11:11 ----------------------------------------
+2025-12-13 19:11:11 Pred: <START> a black and white dog is playing with a ball in its mouth . <END>
+2025-12-13 19:11:11 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 19:11:11 ----------------------------------------
+2025-12-13 19:11:11 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 19:11:11 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 19:11:11 ----------------------------------------
+2025-12-13 19:11:11 Training: 100%|███████████████████████████████| 506/506 [01:43<00:00,  4.89it/s]
+2025-12-13 19:12:54 Validation: 100%|███████████████████████████████| 64/64 [00:07<00:00,  8.33it/s]
+2025-12-13 19:13:02 Epoch 30: train_loss=2.8315, val_loss=3.1559
+2025-12-13 19:13:02 Pred: <START> three people are sitting on a mountain . <END>
+2025-12-13 19:13:02 GT  : <START> people sit on the mountainside and check out the view . <END>
+2025-12-13 19:13:02 ----------------------------------------
+2025-12-13 19:13:02 Pred: <START> a boy in a blue shirt is standing on the beach . <END>
+2025-12-13 19:13:02 GT  : <START> a boy in his blue swim shorts at the beach . <END>
+2025-12-13 19:13:02 ----------------------------------------
+2025-12-13 19:13:02 Pred: <START> a black and white dog is playing with a ball in its mouth . <END>
+2025-12-13 19:13:02 GT  : <START> a black and white dog is attempting to catch a yellow and purple object in a low cut yard . <END>
+2025-12-13 19:13:02 ----------------------------------------
+2025-12-13 19:13:02 Pred: <START> a group of people are sitting on a table in front of a table . <END>
+2025-12-13 19:13:02 GT  : <START> a group of eight people are gathered around a table at night . <END>
+2025-12-13 19:13:02 ----------------------------------------
+2025-12-13 19:13:02 Training finished. Best checkpoint saved at: ./save_dir/best_model.pth
