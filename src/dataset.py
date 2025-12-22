@@ -121,8 +121,11 @@ class FlickrTestDataset(Dataset):
         return image, captions, img_name
 
 
-def get_datasets():
-    path = kagglehub.dataset_download("adityajn105/flickr8k")
+def get_datasets(dataset_type='Flickr8k'):
+    if dataset_type=='Flickr8k':
+        path = kagglehub.dataset_download("adityajn105/flickr8k")
+    if dataset_type=='Flickr30k':
+        path = kagglehub.dataset_download("adityajn105/flickr30k")
 
     print("Path to dataset files:", path)
 

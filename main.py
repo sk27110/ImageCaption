@@ -11,7 +11,7 @@ from transformers import get_cosine_schedule_with_warmup
 
 
 def main():
-    train, val, _ = get_datasets()
+    train, val, _ = get_datasets("Flickr30k")
     pad_idx = train.vocab.stoi["<PAD>"]
     batch_size = 64
     train_loader = DataLoader(
@@ -37,7 +37,7 @@ def main():
     vocab_size = len(train.vocab)
     num_epochs = 20
     num_heads = 8
-    learning_rate = 2e-5
+    learning_rate = 4e-5
     train_CNN = True
     beam_width = 3
 
@@ -55,7 +55,7 @@ def main():
     optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=0.03)
 
     total_steps = len(train_loader) * num_epochs
-    warmup_steps = 500
+    warmup_steps = 1000
 
     scheduler = get_cosine_schedule_with_warmup(
         optimizer,
