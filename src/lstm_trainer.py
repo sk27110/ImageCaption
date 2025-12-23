@@ -38,7 +38,7 @@ class LSTMTrainer:
         # === Comet ML initialization ===
         self.experiment = comet_ml.Experiment(
             api_key="MbL2psOHT82Uc7ML5Cd7TSvmR",
-            project_name="image_captioning_lstm",
+            project_name="image_captioning",
             auto_metric_logging=False,
             auto_param_logging=False,
             auto_histogram_tensorboard_logging=False,
