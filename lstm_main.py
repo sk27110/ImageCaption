@@ -1,5 +1,5 @@
 import comet_ml
-from src.model_lstm import LSTMEncoderDecoder  # предполагаемый путь к вашей новой модели
+from src.resnet_lstm_model import LSTMEncoderDecoder  # предполагаемый путь к вашей новой модели
 from src.dataset import get_datasets
 from src.lstm_trainer import LSTMTrainer  # новый тренер
 from src.utils import CollateFn
@@ -16,7 +16,7 @@ def main():
     start_idx = train.vocab.stoi.get("<START>", 1)  # Проверяем наличие START токена
     end_idx = train.vocab.stoi.get("<END>", 2)      # Проверяем наличие END токена
     
-    batch_size = 32  # Уменьшил batch_size для LSTM
+    batch_size = 64  # Уменьшил batch_size для LSTM
     train_loader = DataLoader(
         train,
         batch_size=batch_size,
@@ -40,11 +40,11 @@ def main():
     hidden_size = 512          # Размер скрытого состояния LSTM
     num_layers = 2             # Количество слоев LSTM (2-3 оптимально)
     vocab_size = len(train.vocab)
-    num_epochs = 30            # LSTM может потребовать больше эпох
+    num_epochs = 20            # LSTM может потребовать больше эпох
     num_heads = 8              # Для энкодера (трансформера) - можно оставить
-    learning_rate = 3e-4       # Чуть выше, чем для трансформера
+    learning_rate = 1e-4       # Чуть выше, чем для трансформера
     train_CNN = True
-    beam_width = 5             # LSTM хорошо работает с beam_width 3-7
+    beam_width = 3             # LSTM хорошо работает с beam_width 3-7
     
     # Количество слоев трансформер-энкодера
     num_encoder_layers = 2     # Можно уменьшить до 1-2 слоев
@@ -66,7 +66,7 @@ def main():
     # Функция потерь (можно добавить label smoothing для LSTM)
     criterion = nn.CrossEntropyLoss(
         ignore_index=pad_idx, 
-        label_smoothing=0.1  # LSTM склонен к переуверенности
+        label_smoothing=0.05  # LSTM склонен к переуверенности
     )
     
     # Оптимизатор - AdamW с умеренным weight decay

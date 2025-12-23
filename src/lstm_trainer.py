@@ -103,7 +103,7 @@ class LSTMTrainer:
             
             # Gradient clipping
             if self.grad_clip > 0:
-                torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.grad_clip)
+                grad_norm = torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.grad_clip)
             
             # Оптимизация
             self.optimizer.step()
@@ -114,14 +114,14 @@ class LSTMTrainer:
             
             # Логирование метрик
             current_lr = self.optimizer.param_groups[0]["lr"]
-            batch_loss = loss.item()
+            batch_loss = loss.detach().item()
             total_loss += batch_loss
             
             # Логирование в Comet ML
             self.experiment.log_metrics({
                 "batch_train_loss": batch_loss,
                 "learning_rate": current_lr,
-                "batch": epoch * total_batches + batch_idx
+                "grad_norm": grad_norm.item()
             })
             
             # Обновление progress bar
@@ -159,69 +159,70 @@ class LSTMTrainer:
                 
                 # Собираем примеры предсказаний для первого батча
                 if batch_idx == 0:
-                    for i in range(min(5, images.size(0))):  # Берем 5 примеров
-                        img_tensor = images[i].unsqueeze(0)
-                        
-                        # Greedy decoding
-                        greedy_ids = self.model.generate(
-                            img_tensor, 
-                            max_len=self.max_gen_len,
-                            start_token=self.start_idx,
-                            end_token=self.end_idx
-                        )[0]  # Берем первый (и единственный) элемент списка
-                        
-                        # Beam search decoding
-                        beam_ids = self.model.generate_beam(
-                            img_tensor,
-                            beam_width=self.beam_width,
-                            max_len=self.max_gen_len,
-                            start_token=self.start_idx,
-                            end_token=self.end_idx
-                        )[0]  # Лучшая последовательность из beam search
-                        
-                        # Конвертируем токены в слова
-                        greedy_tokens = []
-                        for idx in greedy_ids:
-                            if idx == self.end_idx:
-                                greedy_tokens.append("<END>")
+                    for i in range(min(20, images.size(0))):  # Берем 5 примеров
+                        if i%5==0:
+                            img_tensor = images[i].unsqueeze(0)
+                            
+                            # Greedy decoding
+                            greedy_ids = self.model.generate(
+                                img_tensor, 
+                                max_len=self.max_gen_len,
+                                start_token=self.start_idx,
+                                end_token=self.end_idx
+                            )[0]  # Берем первый (и единственный) элемент списка
+                            
+                            # Beam search decoding
+                            beam_ids = self.model.generate_beam(
+                                img_tensor,
+                                beam_width=self.beam_width,
+                                max_len=self.max_gen_len,
+                                start_token=self.start_idx,
+                                end_token=self.end_idx
+                            )[0]  # Лучшая последовательность из beam search
+                            
+                            # Конвертируем токены в слова
+                            greedy_tokens = []
+                            for idx in greedy_ids:
+                                if idx == self.end_idx:
+                                    greedy_tokens.append("<END>")
+                                    break
+                                if hasattr(self.tokenizer, 'itos') and idx < len(self.tokenizer.itos):
+                                    greedy_tokens.append(self.tokenizer.itos[idx])
+                                else:
+                                    greedy_tokens.append(f"[{idx}]")
+                            
+                            beam_tokens = []
+                            for idx in beam_ids:
+                                if idx == self.end_idx:
+                                    beam_tokens.append("<END>")
+                                    break
+                                if hasattr(self.tokenizer, 'itos') and idx < len(self.tokenizer.itos):
+                                    beam_tokens.append(self.tokenizer.itos[idx])
+                                else:
+                                    beam_tokens.append(f"[{idx}]")
+                            
+                            ground_truth_tokens = []
+                            for idx in captions[i].cpu().numpy():
+                                if idx == self.pad_idx:
+                                    continue
+                                if idx == self.end_idx:
+                                    ground_truth_tokens.append("<END>")
+                                    break
+                                if hasattr(self.tokenizer, 'itos') and idx < len(self.tokenizer.itos):
+                                    ground_truth_tokens.append(self.tokenizer.itos[idx])
+                                else:
+                                    ground_truth_tokens.append(f"[{idx}]")
+                            
+                            examples.append({
+                                "image_idx": i,
+                                "greedy": " ".join(greedy_tokens),
+                                "beam": " ".join(beam_tokens),
+                                "ground_truth": " ".join(ground_truth_tokens)
+                            })
+                            
+                            # Останавливаемся после сбора нужного количества примеров
+                            if len(examples) >= 5:
                                 break
-                            if hasattr(self.tokenizer, 'itos') and idx < len(self.tokenizer.itos):
-                                greedy_tokens.append(self.tokenizer.itos[idx])
-                            else:
-                                greedy_tokens.append(f"[{idx}]")
-                        
-                        beam_tokens = []
-                        for idx in beam_ids:
-                            if idx == self.end_idx:
-                                beam_tokens.append("<END>")
-                                break
-                            if hasattr(self.tokenizer, 'itos') and idx < len(self.tokenizer.itos):
-                                beam_tokens.append(self.tokenizer.itos[idx])
-                            else:
-                                beam_tokens.append(f"[{idx}]")
-                        
-                        ground_truth_tokens = []
-                        for idx in captions[i].cpu().numpy():
-                            if idx == self.pad_idx:
-                                continue
-                            if idx == self.end_idx:
-                                ground_truth_tokens.append("<END>")
-                                break
-                            if hasattr(self.tokenizer, 'itos') and idx < len(self.tokenizer.itos):
-                                ground_truth_tokens.append(self.tokenizer.itos[idx])
-                            else:
-                                ground_truth_tokens.append(f"[{idx}]")
-                        
-                        examples.append({
-                            "image_idx": i,
-                            "greedy": " ".join(greedy_tokens),
-                            "beam": " ".join(beam_tokens),
-                            "ground_truth": " ".join(ground_truth_tokens)
-                        })
-                        
-                        # Останавливаемся после сбора нужного количества примеров
-                        if len(examples) >= 5:
-                            break
             
             avg_loss = total_loss / len(self.val_loader)
             
@@ -278,8 +279,8 @@ class LSTMTrainer:
             
             # Логирование метрик эпохи
             self.experiment.log_metrics({
-                "epoch_train_loss": train_loss,
-                "epoch_val_loss": val_loss,
+                "train_loss": train_loss,
+                "val_loss": val_loss,
                 "epoch": epoch
             }, epoch=epoch)
             
