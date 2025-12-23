@@ -153,6 +153,10 @@ class LSTMEncoderDecoder(nn.Module):
         self.embed_size = embed_size
         self.vocab_size = vocab_size
         self.num_layers = num_layers
+        self.num_heads = num_heads
+        self.dropout = dropout
+        self.num_encoder_layers = num_encoder_layers
+        self.train_CNN = train_CNN
 
     def forward(self, images, captions):
         features = self.encoder(images)
