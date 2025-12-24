@@ -26,16 +26,13 @@ class LSTMTrainer:
         self.beam_width = beam_width
         self.grad_clip = grad_clip
         
-        # Пути для сохранения
         self.tokenizer_path = os.path.join(self.save_path, "tokenizer.pth")
         self.model_path = os.path.join(self.save_path, "best_model.pth")
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-        # Перенос модели на устройство
         self.model.to(self.device)
         os.makedirs(self.save_path, exist_ok=True)
 
-        # === Comet ML initialization ===
         self.experiment = comet_ml.Experiment(
             api_key="MbL2psOHT82Uc7ML5Cd7TSvmR",
             project_name="image_captioning",
@@ -44,7 +41,6 @@ class LSTMTrainer:
             auto_histogram_tensorboard_logging=False,
         )
 
-        # Логируем гиперпараметры
         self.experiment.log_parameters({
             "model_type": "LSTM_Attention",
             "embed_size": model.embed_size,
@@ -55,7 +51,6 @@ class LSTMTrainer:
             "max_gen_len": max_gen_len
         })
 
-        # Сохраняем и логируем токенизатор
         vocab_state = {
             "itos": self.tokenizer.itos,
             "stoi": self.tokenizer.stoi,
@@ -71,7 +66,6 @@ class LSTMTrainer:
         self.experiment.log_asset(self.tokenizer_path, file_name="tokenizer.pth")
 
     def _train_one_epoch(self, epoch):
-        """Обучение на одной эпохе"""
         self.model.train()
         total_loss = 0
         total_batches = len(self.train_loader)
@@ -83,48 +77,35 @@ class LSTMTrainer:
             images = images.to(self.device)
             captions = captions.to(self.device)
             
-            # Подготовка входных данных для teacher forcing
-            # Вход: captions без последнего токена, цель: captions без первого токена
             tgt_input = captions[:, :-1]
             targets = captions[:, 1:]
             
-            # Forward pass
             self.optimizer.zero_grad()
             outputs = self.model(images, tgt_input)
             
-            # Вычисление потерь
-            # outputs shape: (batch_size, seq_len, vocab_size)
-            # targets shape: (batch_size, seq_len)
             loss = self.criterion(outputs.reshape(-1, outputs.shape[-1]), 
                                  targets.reshape(-1))
             
-            # Backward pass
             loss.backward()
             
-            # Gradient clipping
             if self.grad_clip > 0:
                 grad_norm = torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.grad_clip)
             
-            # Оптимизация
             self.optimizer.step()
             
-            # Обновление learning rate scheduler
             if self.scheduler is not None:
                 self.scheduler.step()
             
-            # Логирование метрик
             current_lr = self.optimizer.param_groups[0]["lr"]
             batch_loss = loss.detach().item()
             total_loss += batch_loss
             
-            # Логирование в Comet ML
             self.experiment.log_metrics({
                 "batch_train_loss": batch_loss,
                 "learning_rate": current_lr,
                 "grad_norm": grad_norm.item()
             })
             
-            # Обновление progress bar
             progress_bar.set_postfix({
                 "loss": f"{batch_loss:.4f}",
                 "lr": f"{current_lr:.6f}"
@@ -134,7 +115,6 @@ class LSTMTrainer:
         return avg_loss
 
     def _validate(self, epoch):
-        """Валидация модели"""
         self.model.eval()
         total_loss = 0
         examples = []
@@ -147,40 +127,34 @@ class LSTMTrainer:
                 images = images.to(self.device)
                 captions = captions.to(self.device)
                 
-                # Подготовка данных для валидации
                 tgt_input = captions[:, :-1]
                 targets = captions[:, 1:]
                 
-                # Forward pass для вычисления потерь
                 outputs = self.model(images, tgt_input)
                 loss = self.criterion(outputs.reshape(-1, outputs.shape[-1]), 
                                      targets.reshape(-1))
                 total_loss += loss.item()
                 
-                # Собираем примеры предсказаний для первого батча
                 if batch_idx == 0:
-                    for i in range(min(20, images.size(0))):  # Берем 5 примеров
-                        if i%5==0:
+                    for i in range(min(20, images.size(0))):
+                        if i % 5 == 0:
                             img_tensor = images[i].unsqueeze(0)
                             
-                            # Greedy decoding
                             greedy_ids = self.model.generate(
                                 img_tensor, 
                                 max_len=self.max_gen_len,
                                 start_token=self.start_idx,
                                 end_token=self.end_idx
-                            )[0]  # Берем первый (и единственный) элемент списка
+                            )[0]
                             
-                            # Beam search decoding
                             beam_ids = self.model.generate_beam(
                                 img_tensor,
                                 beam_width=self.beam_width,
                                 max_len=self.max_gen_len,
                                 start_token=self.start_idx,
                                 end_token=self.end_idx
-                            )[0]  # Лучшая последовательность из beam search
+                            )[0]
                             
-                            # Конвертируем токены в слова
                             greedy_tokens = []
                             for idx in greedy_ids:
                                 if idx == self.end_idx:
@@ -220,13 +194,11 @@ class LSTMTrainer:
                                 "ground_truth": " ".join(ground_truth_tokens)
                             })
                             
-                            # Останавливаемся после сбора нужного количества примеров
                             if len(examples) >= 5:
                                 break
             
             avg_loss = total_loss / len(self.val_loader)
             
-            # Логирование примеров в Comet ML
             for ex in examples:
                 self.experiment.log_text(
                     text=ex["greedy"],
@@ -256,7 +228,6 @@ class LSTMTrainer:
             return avg_loss, examples
 
     def train(self):
-        """Основной цикл обучения"""
         print(f"Начинаем обучение на устройстве: {self.device}")
         print(f"Размер словаря: {self.model.vocab_size}")
         print(f"Размер эмбеддинга: {self.model.embed_size}")
@@ -271,25 +242,19 @@ class LSTMTrainer:
             print(f"Эпоха {epoch}/{self.num_epochs}")
             print(f"{'='*60}")
             
-            # Обучение
             train_loss = self._train_one_epoch(epoch)
-            
-            # Валидация
             val_loss, examples = self._validate(epoch)
             
-            # Логирование метрик эпохи
             self.experiment.log_metrics({
                 "train_loss": train_loss,
                 "val_loss": val_loss,
                 "epoch": epoch
             }, epoch=epoch)
             
-            # Вывод результатов
             print(f"\nРезультаты эпохи {epoch}:")
             print(f"Train Loss: {train_loss:.4f}")
             print(f"Val Loss:   {val_loss:.4f}")
             
-            # Вывод примеров
             print(f"\nПримеры предсказаний (из валидации):")
             for i, ex in enumerate(examples):
                 print(f"\nПример {i+1}:")
@@ -297,13 +262,11 @@ class LSTMTrainer:
                 print(f"  Beam:    {ex['beam']}")
                 print(f"  Ground:  {ex['ground_truth']}")
             
-            # Сохранение лучшей модели
             if val_loss < best_val_loss:
                 best_val_loss = val_loss
                 best_epoch = epoch
                 wait = 0
                 
-                # Сохраняем модель
                 torch.save({
                     "epoch": epoch,
                     "model_state_dict": self.model.state_dict(),
@@ -325,7 +288,6 @@ class LSTMTrainer:
                 
                 print(f"\n✓ Сохранена лучшая модель с Val Loss: {val_loss:.4f}")
                 
-                # Логируем модель в Comet ML
                 self.experiment.log_model(
                     "best_lstm_model",
                     self.model_path,
@@ -335,19 +297,16 @@ class LSTMTrainer:
                 wait += 1
                 print(f"\nVal Loss не улучшился. Патience: {wait}/{self.patience}")
             
-            # Early stopping
             if wait >= self.patience:
                 print(f"\nEarly stopping на эпохе {epoch}")
                 break
         
-        # Финальные логи
         print(f"\n{'='*60}")
         print(f"Обучение завершено!")
         print(f"Лучшая модель на эпохе {best_epoch} с Val Loss: {best_val_loss:.4f}")
         print(f"Модель сохранена в: {self.model_path}")
         print(f"{'='*60}")
         
-        # Завершаем эксперимент Comet ML
         self.experiment.log_parameter("best_epoch", best_epoch)
         self.experiment.log_parameter("best_val_loss", best_val_loss)
         self.experiment.end()
