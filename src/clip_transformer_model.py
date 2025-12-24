@@ -14,11 +14,10 @@ class Encoder(nn.Module):
             param.requires_grad = False
 
         if train_CNN:
-            # Fine-tune the last few layers of the ViT encoder, analogous to layer3 and layer4 in ResNet
             for param in self.vision_model.vision_model.encoder.layers[-4:].parameters():
                 param.requires_grad = True
 
-        self.proj = nn.Linear(768, embed_size)  # CLIP ViT-B/32 has hidden size 768
+        self.proj = nn.Linear(768, embed_size)
         self.relu = nn.ReLU()
         self.dropout = nn.Dropout(0.3)
         self.pos_encoder = PositionalEncoding(embed_size, max_len=49)
@@ -37,15 +36,13 @@ class Encoder(nn.Module):
         nn.init.zeros_(self.proj.bias)
 
     def forward(self, images):
-        # Assume images are preprocessed pixel_values in [0, 1] range, normalized as per CLIP
         outputs = self.vision_model(pixel_values=images)
-        features = outputs.last_hidden_state[:, 1:, :]  # (B, 49, 768), exclude CLS token
+        features = outputs.last_hidden_state[:, 1:, :]
 
         features = self.proj(features)
         features = self.relu(features)
         features = self.dropout(features)
 
-        # features is already (B, 49, embed_size)
         features = self.pos_encoder(features.transpose(0, 1)).transpose(0, 1)
         features = self.transformer_encoder(features)
 
@@ -119,7 +116,7 @@ class Decoder(nn.Module):
 
 
 class CLIPTransformerEncoderDecoder(nn.Module):
-    def __init__(self, embed_size, num_heads, vocab_size, num_layers, dropout=0.4, num_encoder_layers=3, train_CNN = False):
+    def __init__(self, embed_size, num_heads, vocab_size, num_layers, dropout=0.4, num_encoder_layers=3, train_CNN=False):
         super().__init__()
         self.encoder = Encoder(embed_size, train_CNN=train_CNN, num_encoder_layers=num_encoder_layers, num_heads=num_heads, dropout=dropout)
         self.decoder = Decoder(embed_size, num_heads, num_layers, vocab_size, dropout)
@@ -160,65 +157,51 @@ class CLIPTransformerEncoderDecoder(nn.Module):
         with torch.no_grad():
             batch_size = images.size(0)
             device = images.device
-            features = self.encoder(images)  # (batch_size, 49, embed_size)
+            features = self.encoder(images)
 
-            # Initial sequences with start token
             start_tokens = torch.full((batch_size, 1), start_token, dtype=torch.long, device=device)
 
-            # Get initial log probs for the first token after start
             seq_len = 1
             tgt_mask = self._generate_square_subsequent_mask(seq_len).to(device)
-            logits = self.decoder(features, start_tokens, tgt_mask, None)  # (batch_size, 1, vocab_size)
-            log_probs = torch.log_softmax(logits[:, -1, :], dim=-1)  # (batch_size, vocab_size)
+            logits = self.decoder(features, start_tokens, tgt_mask, None)
+            log_probs = torch.log_softmax(logits[:, -1, :], dim=-1)
 
-            # Select top beam_width candidates for first step
-            top_log_probs, top_indices = log_probs.topk(beam_width, dim=-1)  # (batch_size, beam_width)
+            top_log_probs, top_indices = log_probs.topk(beam_width, dim=-1)
 
-            # Expand features for beams: (batch_size * beam_width, 49, embed_size)
             features_expanded = features.unsqueeze(1).repeat(1, beam_width, 1, 1).view(batch_size * beam_width, -1, self.embed_size)
 
-            # Current sequences: start_token + first predicted token
             current_sequences = torch.full((batch_size * beam_width, 1), start_token, dtype=torch.long, device=device)
             next_tokens = top_indices.view(batch_size * beam_width, 1)
             current_sequences = torch.cat([current_sequences, next_tokens], dim=1)
 
-            # Current cumulative scores (log probs)
             current_scores = top_log_probs.view(batch_size * beam_width)
 
             for step in range(2, max_len + 1):
                 seq_len = current_sequences.size(1)
                 tgt_mask = self._generate_square_subsequent_mask(seq_len).to(device)
-                logits = self.decoder(features_expanded, current_sequences, tgt_mask, None)  # (batch_size * beam_width, seq_len, vocab_size)
-                log_probs = torch.log_softmax(logits[:, -1, :], dim=-1)  # (batch_size * beam_width, vocab_size)
+                logits = self.decoder(features_expanded, current_sequences, tgt_mask, None)
+                log_probs = torch.log_softmax(logits[:, -1, :], dim=-1)
 
-                # Compute new scores
-                new_scores = current_scores.unsqueeze(1) + log_probs  # (batch_size * beam_width, vocab_size)
+                new_scores = current_scores.unsqueeze(1) + log_probs
 
-                # Reshape to select top per original batch
-                new_scores = new_scores.view(batch_size, beam_width * self.vocab_size)  # (batch_size, beam_width * vocab_size)
-                top_scores, top_indices = new_scores.topk(beam_width, dim=-1)  # (batch_size, beam_width)
+                new_scores = new_scores.view(batch_size, beam_width * self.vocab_size)
+                top_scores, top_indices = new_scores.topk(beam_width, dim=-1)
 
-                # Compute beam and token indices
-                beam_indices = top_indices // self.vocab_size  # (batch_size, beam_width)
-                token_indices = top_indices % self.vocab_size  # (batch_size, beam_width)
+                beam_indices = top_indices // self.vocab_size
+                token_indices = top_indices % self.vocab_size
 
-                # Flatten beam indices to gather from expanded batch
-                selected_beam_indices = (torch.arange(batch_size, device=device).unsqueeze(1) * beam_width + beam_indices).view(-1)  # (batch_size * beam_width)
+                selected_beam_indices = (torch.arange(batch_size, device=device).unsqueeze(1) * beam_width + beam_indices).view(-1)
 
-                # Gather previous sequences and append new tokens
-                new_sequences = current_sequences[selected_beam_indices]  # (batch_size * beam_width, seq_len)
+                new_sequences = current_sequences[selected_beam_indices]
                 new_tokens = token_indices.view(batch_size * beam_width, 1)
                 current_sequences = torch.cat([new_sequences, new_tokens], dim=1)
 
-                # Update scores
                 current_scores = top_scores.view(batch_size * beam_width)
 
-            # Select the best beam for each batch
             final_scores = current_scores.view(batch_size, beam_width)
-            best_beam_idx = final_scores.argmax(dim=-1)  # (batch_size,)
-            best_sequences = current_sequences.view(batch_size, beam_width, -1)[torch.arange(batch_size), best_beam_idx]  # (batch_size, max_len + 1)
+            best_beam_idx = final_scores.argmax(dim=-1)
+            best_sequences = current_sequences.view(batch_size, beam_width, -1)[torch.arange(batch_size), best_beam_idx]
 
-            # Trim sequences after end_token if present
             captions = []
             for seq in best_sequences:
                 seq_list = seq.tolist()
@@ -231,8 +214,6 @@ class CLIPTransformerEncoderDecoder(nn.Module):
 
             return captions
 
-
-        
     def _generate_square_subsequent_mask(self, sz):
         mask = torch.triu(torch.ones(sz, sz) * float('-inf'), diagonal=1)
         return mask
