@@ -28,8 +28,6 @@ class Trainer:
 
         self.model.to(self.device)
         os.makedirs(self.save_path, exist_ok=True)
-
-        # === Comet ML initialization ===
         self.experiment = comet_ml.Experiment(
             api_key="MbL2psOHT82Uc7ML5Cd7TSvmR",
             project_name="image_captioning",
@@ -38,7 +36,6 @@ class Trainer:
             auto_histogram_tensorboard_logging=False,
         )
 
-        # Сохраняем и логируем токенизатор
         vocab_state = {
             "itos": self.tokenizer.itos,
             "stoi": self.tokenizer.stoi,
@@ -89,7 +86,6 @@ class Trainer:
             self.scheduler.step()
             current_lr = self.optimizer.param_groups[0]["lr"]
 
-            # === Логирование в Comet ===
             self.experiment.log_metrics({
                 "batch_train_loss": loss.detach().item(),
                 "grad_norm": grad_norm.item(),
@@ -129,16 +125,13 @@ class Trainer:
                             gen_ids = self.model.generate(images[i].unsqueeze(0), max_len=self.max_gen_len,
                                                            start_token=self.tokenizer.stoi["<START>"],
                                                            end_token=self.end_idx)[0]
-                            # Возвращает список из beam_width последовательностей → берём лучшую (индекс 0)
                             best_beam_sequence = self.model.generate_beam(
                                 images[i].unsqueeze(0), 
                                 max_len=self.max_gen_len,
                                 beam_width=self.beam_width,                          
                                 start_token=self.tokenizer.stoi["<START>"],
                                 end_token=self.end_idx
-                            )[0]   # ← ЭТО КРИТИЧНО!
-                            
-                            # Теперь best_beam_sequence — это обычный список или тензор с токенами (как в greedy)
+                            )[0] 
                             gen_beam_tokens = [self.tokenizer.itos[idx.item() if torch.is_tensor(idx) else idx] 
                                               for idx in best_beam_sequence 
                                               if idx != self.tokenizer.stoi["<PAD>"]]
@@ -151,7 +144,6 @@ class Trainer:
                                 "ground_truth": " ".join(true_tokens)
                             })
 
-            # Логируем примеры как текстовые метрики
             for idx, ex in enumerate(examples):
                 self.experiment.log_text(ex["beam_prediction"], step=None, metadata={"type": f"example_{idx}_beam_prediction"})
                 self.experiment.log_text(ex["prediction"], step=None, metadata={"type": f"example_{idx}_prediction"})
@@ -186,7 +178,6 @@ class Trainer:
                     }
                 }, self.model_path)
 
-                # Логируем лучшую модель в Comet
                 self.experiment.log_model("best_model", self.model_path)
                 best_checkpoint = self.model_path
             else:
@@ -195,14 +186,12 @@ class Trainer:
                     print(f"Early stopping at epoch {epoch}")
                     break
 
-            # Основные метрики эпохи
             self.experiment.log_metrics({
                 "train_loss": train_loss,
                 "val_loss": val_loss,
                 "epoch": epoch
             }, epoch=epoch)
 
-            # Примеры предсказаний (как текст)
             for idx, ex in enumerate(examples):
                 self.experiment.log_text(ex["prediction"], metadata={"example": idx, "type": "greedy"})
                 self.experiment.log_text(ex["beam_prediction"], metadata={"example": idx, "type": "beam"})
